@@ -2,16 +2,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: production
+  name: express
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: production
+  project: express
   source:
     repoURL: https://github.com/amit-gueta/argo-express-prod
     targetRevision: HEAD
-    path: production
+    path: prod
   destination:
     server: https://kubernetes.default.svc
     namespace: production
