@@ -9,9 +9,9 @@ metadata:
 spec:
   project: express
   source:
-    repoURL: https://github.com/amit-gueta/argo-express-prod
+    repoURL: https://github.com/amit-gueta/argo-express-prod.git
     targetRevision: HEAD
-    path: prod
+    path: manifests
   destination:
     server: https://kubernetes.default.svc
     namespace: production
