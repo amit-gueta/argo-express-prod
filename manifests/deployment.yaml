@@ -1,35 +1,35 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: express-server1
-  namespace: dev
+  name: express-server
+  namespace: prod
   labels:
-    app: express-server1
+    app: express-server
 spec:
   ports:
   - port: 3000
     protocol: TCP
   clusterIP: None
   selector:
-    app: express-server1
+    app: express-server
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: express-server1
-  namespace: dev
+  name: express-server
+  namespace: prod
   labels:
-    app: express-server1
+    app: express-server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: express-server1
+      app: express-server
   template:
     metadata:
       labels:
-        app: express-server1
+        app: express-server
     spec:
       containers:
-      - name: express-server1
+      - name: express-server
         image: guetaamit/app:v4

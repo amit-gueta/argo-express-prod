@@ -2,12 +2,12 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: demo-express1.34.105.179.16.nip.io
+  name: 34.105.179.16.nip.io
   namespace: dev
 spec:
   ingressClassName: nginx
   rules:
-  - host: demo-express1.34.105.179.16.nip.io
+  - host: 34.105.179.16.nip.io
     http:
       paths:
       - backend:
