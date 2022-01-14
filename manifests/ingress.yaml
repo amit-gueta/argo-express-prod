@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: 34.105.179.16.nip.io
+  name: prod_app
   namespace: prod
 spec:
   ingressClassName: nginx
