@@ -32,4 +32,4 @@ spec:
     spec:
       containers:
       - name: express-server
-        image: guetaamit/app:5ed29135c0c6d2568d05dc682cb9aaaf36aa02b1
+        image: guetaamit/app:v4
