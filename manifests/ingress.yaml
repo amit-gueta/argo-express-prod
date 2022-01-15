@@ -4,6 +4,9 @@ kind: Ingress
 metadata:
   name: amitgu-dev-ingress
   namespace: prod
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
 spec:
   ingressClassName: nginx
   tls:
@@ -12,7 +15,7 @@ spec:
     secretName: secret-tls
   rules:
   - host: prod.amitgu.dev
-    http:
+    http: 
       paths:
       - backend:
           service:
