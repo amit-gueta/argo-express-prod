@@ -8,10 +8,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - amitgu.dev
+    - prod.amitgu.dev
     secretName: secret-tls
   rules:
-  - host: amitgu.dev
+  - host: prod.amitgu.dev
     http:
       paths:
       - backend:
