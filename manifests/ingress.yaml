@@ -7,7 +7,6 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
-    nginx.org/hsts: "true"
 spec:
   ingressClassName: nginx
   tls:
