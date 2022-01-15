@@ -2,12 +2,16 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: 34.105.179.16.nip.io
+  name: amitgu-dev-ingress
   namespace: prod
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - amitgu.dev
+    secretName: secret-tls
   rules:
-  - host: 34.105.179.16.nip.io
+  - host: amitgu.dev
     http:
       paths:
       - backend:
