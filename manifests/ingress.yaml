@@ -11,10 +11,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - prod.amitgu.dev
+    - amitgu.dev
     secretName: secret-tls
   rules:
-  - host: prod.amitgu.dev
+  - host: amitgu.dev
     http: 
       paths:
       - backend:
