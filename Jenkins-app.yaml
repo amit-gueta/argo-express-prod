@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jenkins
+  namespace: argocd
+spec:
+  source:
+    path: jenkins
+    repoURL: https://github.com/amit-gueta/argo-express-prod.git
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: argocd
+  project: default
+  ignoreDifferences:
+  - group: ''
+    jsonPointers:
+    - /data/jenkins-admin-password
+    kind: Secret
