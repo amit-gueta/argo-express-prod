@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   source:
-    path: jenkins
+    chart: jenkins
     repoURL: https://github.com/amit-gueta/argo-express-prod.git
     targetRevision: HEAD
   destination:
