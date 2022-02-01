@@ -7,7 +7,6 @@ spec:
   source:
     chart: jenkins
     repoURL: https://github.com/amit-gueta/argo-express-prod.git
-    targetRevision: HEAD
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
