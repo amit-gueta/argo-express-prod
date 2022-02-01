@@ -3,16 +3,70 @@ kind: Application
 metadata:
   name: jenkins
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   source:
-    chart: jenkins
-    repoURL: https://github.com/amit-gueta/argo-express-prod.git
+    path: charts/jenkins
+    repoURL: https://github.com/jenkinsci/helm-charts
+    targetRevision: HEAD
+    helm:
+      values: |
+        controller:
+          ingress:
+            enabled: true
+            apiVersion: "networking.k8s.io/v1"
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt
+              kubernetes.io/tls-acme: "true"
+              nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+            ingressClassName: nginx
+            hostName: jenkins.amitgu.dev
+            paths:
+            - pathType: Prefix
+              path: /
+              backend:
+                service:
+                  name: jenkins
+                  port:
+                    number: 8080
+            tls:
+            - hosts:
+              - jenkins.amitgu.dev
+              secretName: secret-wildcard
+          installPlugins:
+            - kubernetes:latest
+            - workflow-job:latest
+            - workflow-aggregator:latest
+            - credentials-binding:latest
+            - git:latest
+            - google-oauth-plugin:latest
+            - google-source-plugin:latest
+            - google-kubernetes-engine:latest
+            - google-storage-plugin:latest
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "1024Mi"
+            limits:
+              cpu: "1"
+              memory: "3500Mi"
+          javaOpts: "-Xms3500m -Xmx3500m"
+          serviceType: ClusterIP
+        agent:
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "256Mi"
+            limits:
+              cpu: "1"
+              memory: "512Mi"
+        persistence:
+          size: 100Gi
+        serviceAccount:
+          name: cd-jenkins
+
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: argocd
+    namespace: jenkins
   project: default
-  ignoreDifferences:
-  - group: ''
-    jsonPointers:
-    - /data/jenkins-admin-password
-    kind: Secret
